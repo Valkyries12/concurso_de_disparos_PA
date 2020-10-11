@@ -10,7 +10,7 @@ class Disparo(Participante):
         Disparo.contador_disparos += 1
         super().__init__(nombre, apellido, edad, sexo)
         self.__id_disparo = Disparo.contador_disparos
-        self.__disparos = {}
+        self.__disparos = []
         
         
     def get_id_disparo(self):
@@ -21,17 +21,12 @@ class Disparo(Participante):
         return self.__disparos
     
     
-    def set_disparos(self):
-        """
-        Devuelve una diccionario con los datos del participante
-        """
-        datos = self.__armar_datos(self.__hacer_disparo())
-        return datos
+    def set_disparos(self, disparos):
+        self.__disparos = disparos
             
             
-    def __armar_datos(self, disparos):
+    def armar_datos(self):
         """
-        Recibe -> lista de disparos
         Devuelve -> formatea los datos en un diccionario
         """        
         datos = {
@@ -46,16 +41,14 @@ class Disparo(Participante):
         return datos
         
     
-    def __hacer_disparo(self):
+    def hacer_disparos(self):
         """
-        Devuelve una lista con los tres disparos del participante
+        Llena el atributo __disparos con lista con los tres disparos del participante
         """      
-        disparos = []
         for i in range(3):
             distancia = self.__distancia_disparo(random.randrange(1, 80), random.randrange(1, 80) )
-            disparos.append(distancia)
+            self.__disparos.append(distancia)
             print(f"Disparo Numero {i+1} -> {distancia}")
-        return disparos
     
     
     def __distancia_disparo(self, x, y):
@@ -80,5 +73,5 @@ class Disparo(Participante):
         
         
 d1 = Disparo("Nicolas", "caruso", 28, "M")
-d1.set_disparos()
+d1.hacer_disparos()
 print(d1)
