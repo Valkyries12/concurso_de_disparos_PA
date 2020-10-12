@@ -168,6 +168,43 @@ class Concurso:
         return promedios
     
     
+    def mostrar_mejores_disparos(self):
+        """
+        Muestra el mejor disparo de cada participante
+        """
+        participantes = self.__disparos.copy()
+        mejores_disparos = self.__calcular_mejores_disparos(participantes)
+        for mejor_disparo in mejores_disparos:
+            print(
+                f"""
+                *********************************
+                ****** PARTICIPANTE Nº: {mejor_disparo['nroParticipante']} ******
+                *********************************
+                Disparos: {mejor_disparo['disparos']},
+                Nombre: {mejor_disparo['nombre']},
+                Apellido: {mejor_disparo['apellido']},
+                Mejor disparo: {mejor_disparo['mejor_disparo']}
+                *********************************
+                *********************************
+                """
+            )
+    
+    
+    def __calcular_mejores_disparos(self, participantes):
+        """
+        Devuelve uns lista de diccionarios con los datos del participante y su mejor disparo
+        """
+        mejores_disparos = []
+        for participante in participantes:
+            mejor_puntaje = 999
+            for disparo in participante['disparos']:
+                if disparo < mejor_puntaje:
+                    mejor_puntaje = disparo
+            participante['mejor_disparo'] = mejor_puntaje
+            mejores_disparos.append(participante)
+        return mejores_disparos
+    
+    
     def __ordenar_por_edad(self, participantes):
         """
         Devuelve una lista de diccionarios con los datos de los participantes ordenados descendente por edad
