@@ -21,7 +21,7 @@ class Concurso:
         
         
     def mostrar_registros(self):
-        disparos = self.__disparos
+        disparos = self.__disparos.copy()
         for disparo in disparos:
             print(
                 f"""
@@ -110,7 +110,7 @@ class Concurso:
         """
         Muestra los datos de los participantes ordenados de menor a mayor por edad
         """
-        participantes = self.__disparos
+        participantes = self.__disparos.copy()
         sorted_participantes = self.__ordenar_por_edad(participantes)
         for participante in sorted_participantes:
             print(
@@ -130,6 +130,42 @@ class Concurso:
                 *********************************
                 """
             )
+    
+    
+    def mostrar_promedio_disparo(self):
+        """
+        Muestra el promedio de los disparos de cada participante
+        """
+        participantes = self.__disparos.copy()
+        promedios = self.__calcular_promedio_disparo(participantes)
+        for promedio in promedios:
+            print(
+                f"""
+                *********************************
+                ****** PARTICIPANTE Nº: {promedio['nroParticipante']} ******
+                *********************************
+                Disparos: {promedio['disparos']},
+                Nombre: {promedio['nombre']},
+                Apellido: {promedio['apellido']},
+                Promedio: {promedio['promedio']}
+                *********************************
+                *********************************
+                """
+            )
+        
+        
+    def __calcular_promedio_disparo(self, participantes):
+        """
+        Devuelve un diccionario con los datos del participante con un campo de promedio
+        """
+        promedios = []
+        for participante in participantes:
+            total = 0
+            for puntaje in participante['disparos']:
+                total += puntaje
+            participante['promedio'] = round(total / len(participante['disparos']))
+            promedios.append(participante)
+        return promedios
     
     
     def __ordenar_por_edad(self, participantes):
