@@ -66,6 +66,31 @@ class Concurso:
                 ***********************************
                 """
             )
+    
+    
+    def mostrar_ultimo(self):
+        """
+        Muestra el tercer puesto
+        """
+        participantes = self.__puntuacion_total()
+        podio = self.__armar_podio(participantes)
+        print(
+                f"""
+                ***********************************
+                ********** ULTIMO PUESTO **********
+                ***********************************
+                id disparo: {podio[0]['idDisparo']},
+                Disparos: {podio[0]['disparos']},
+                Numero participante: {podio[0]['nroParticipante']},
+                Nombre: {podio[0]['nombre']},
+                Apellido: {podio[0]['apellido']},
+                Edad: {podio[0]['edad']},
+                Sexo: {podio[0]['sexo']},
+                Puntaje: {podio[0]['puntaje_total']}
+                ***********************************
+                ***********************************
+                """
+            )
         
     
     def __armar_podio(self, participantes):
