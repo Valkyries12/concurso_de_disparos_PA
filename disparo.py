@@ -48,7 +48,7 @@ class Disparo(Participante):
         for i in range(3):
             distancia = self.__distancia_disparo(random.randrange(1, 80), random.randrange(1, 80) )
             self.__disparos.append(distancia)
-            print(f"Disparo Numero {i+1} -> {distancia}")
+            #print(f"Disparo Numero {i+1} -> {distancia}")
     
     
     def __distancia_disparo(self, x, y):
@@ -65,13 +65,18 @@ class Disparo(Participante):
     def __str__(self):
         return (
             f"""
+            *********************************
+            ****** PARTICIPANTE Nº: {self._numero_participante} ******
+            *********************************
             id disparo: {self.__id_disparo},
             Disparos: {self.__disparos}
             {super().__str__()}
+            *********************************
+            *********************************
             """
         )
         
         
-d1 = Disparo("Nicolas", "caruso", 28, "M")
-d1.hacer_disparos()
-print(d1)
+#d1 = Disparo("Nicolas", "caruso", 28, "M")
+#d1.hacer_disparos()
+#print(d1)
