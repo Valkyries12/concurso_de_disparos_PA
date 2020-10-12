@@ -91,6 +91,16 @@ class Concurso:
                 ***********************************
                 """
             )
+    
+    
+    def cantidad_participantes(self):
+        print(
+            f"""
+            ************************************************
+            ******** SE ENCONTRARON {len(self.__disparos)} PARTICIPANTES ********
+            ************************************************
+            """
+        )
         
     
     def __armar_podio(self, participantes):

@@ -19,3 +19,4 @@ concurso_disparo = Concurso([maria.armar_datos(), carlos.armar_datos(), eleonora
 concurso_disparo.mostrar_registros()
 concurso_disparo.mostrar_podio()
 concurso_disparo.mostrar_ultimo()
+concurso_disparo.cantidad_participantes()
