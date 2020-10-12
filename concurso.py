@@ -94,6 +94,9 @@ class Concurso:
     
     
     def cantidad_participantes(self):
+        """
+        Muestra la cantidad de participantes en el concurso
+        """
         print(
             f"""
             ************************************************
@@ -101,7 +104,60 @@ class Concurso:
             ************************************************
             """
         )
-        
+    
+    
+    def mostrar_ordenado_por_edad(self):
+        """
+        Muestra los datos de los participantes ordenados de menor a mayor por edad
+        """
+        participantes = self.__disparos
+        sorted_participantes = self.__ordenar_por_edad(participantes)
+        for participante in sorted_participantes:
+            print(
+                f"""
+                *********************************
+                ****** PARTICIPANTE Nº: {participante['nroParticipante']} ******
+                *********************************
+                id disparo: {participante['idDisparo']},
+                Disparos: {participante['disparos']},
+                Numero participante: {participante['nroParticipante']},
+                Nombre: {participante['nombre']},
+                Apellido: {participante['apellido']},
+                Edad: {participante['edad']},
+                Sexo: {participante['sexo']},
+                Puntaje: {participante['puntaje_total']}
+                *********************************
+                *********************************
+                """
+            )
+    
+    
+    def __ordenar_por_edad(self, participantes):
+        """
+        Devuelve una lista de diccionarios con los datos de los participantes ordenados descendente por edad
+        """
+        sorted_participantes = []
+        while len(participantes) > 0:
+            menor_edad = self.__calcular_menor_edad(participantes)
+            sorted_participantes.append(menor_edad)
+            for participante in participantes:
+                if menor_edad['nroParticipante'] == participante['nroParticipante']:
+                    participantes.remove(participante)
+        return sorted_participantes
+    
+    
+    def __calcular_menor_edad(self, participantes):
+        """
+        Devuelve un diccionario con los datos del participante de menor edad
+        """
+        menor_edad = 999
+        temp = None
+        for participante in participantes:
+            if participante['edad'] < menor_edad:
+                menor_edad = participante['edad']
+                temp = participante
+        return temp
+    
     
     def __armar_podio(self, participantes):
         """
