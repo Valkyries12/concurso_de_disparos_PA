@@ -5,7 +5,7 @@ class Concurso:
     
     contador_concurso = 0
     
-    def __init__(self, disparo):
+    def __init__(self, disparo=[]):
         Concurso.contador_concurso += 1
         self.__id_concurso = Concurso.contador_concurso
         self.__disparos = disparo
