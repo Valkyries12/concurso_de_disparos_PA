@@ -50,14 +50,14 @@ def dibujar_menu():
         )
     opcion = input("Ingrese una opcion: ")
     return opcion
-    
 
-def iniciar():
+
+def seleccionar_opciones(concurso, opcion):
     """
-    Dibuja y contiene la lógica del menú
+    Recibe un objeto de concurso y una opcion
+    Permite seleccionar distintas opciones con sus funcionalidades
     """
-    concurso_disparos = Concurso()
-    opcion = dibujar_menu()
+    
     while opcion != "10":
         
         if opcion == "0":
@@ -67,12 +67,43 @@ def iniciar():
             sexo = input("Ingrese sexo del participante [F/M]: ").upper()
             participante = Disparo(nombre, apellido, edad, sexo)
             participante.hacer_disparos() 
-            concurso_disparos.set_disparos(participante.armar_datos())
+            concurso.set_disparos(participante.armar_datos())
         elif opcion == "1":
-            concurso_disparos.mostrar_registros()
-            
-        opcion = dibujar_menu()
+            concurso.mostrar_registros()
+        elif opcion == "2":
+            concurso.mostrar_podio()
+        elif opcion == "3":
+            concurso.mostrar_ultimo()
+        elif opcion == "4":
+            concurso.cantidad_participantes()
+        elif opcion == "5":
+            concurso.mostrar_ordenado_por_edad()
+        elif opcion == "6":
+            concurso.mostrar_promedio_disparo()
+        elif opcion == "7":
+            concurso.mostrar_mejores_disparos()
+        elif opcion == "8":
+            concurso.guardar_CSV()
+        elif opcion == "9":
+            concurso.borrar_CSV()
         
+        opcion = dibujar_menu()
+    else:
+        print(
+            """
+            SALIENDO........
+            """
+        )   
+    
+
+def iniciar():
+    """
+    Dibuja y contiene la lógica del menú
+    """
+    concurso_disparos = Concurso()
+    opcion = dibujar_menu()
+    seleccionar_opciones(concurso_disparos, opcion)
+    
                 
 
 iniciar()
