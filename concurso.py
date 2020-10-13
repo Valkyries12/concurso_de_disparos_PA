@@ -28,18 +28,18 @@ class Concurso:
         for disparo in disparos:
             print(
                 f"""
-                *********************************
-                ****** PARTICIPANTE Nº: {disparo['nroParticipante']} ******
-                *********************************
+                =================================
+                ====== PARTICIPANTE Nº: {disparo['nroParticipante']} ======
+                =================================
                 id disparo: {disparo['idDisparo']},
                 Disparos: {disparo['disparos']},
                 Numero participante: {disparo['nroParticipante']},
                 Nombre: {disparo['nombre']},
                 Apellido: {disparo['apellido']},
                 Edad: {disparo['edad']},
-                Sexo: {disparo['sexo']}
-                *********************************
-                *********************************
+                sexo: {disparo['sexo']}
+                =================================
+                =================================
                 """
             )
     
@@ -54,19 +54,19 @@ class Concurso:
         for i in range(len(podio)):
             print(
                 f"""
-                ***********************************
-                ********** PUESTO Nº: {i+1} **********
-                ***********************************
+                ===================================
+                ========== PUESTO Nº: {i+1} ==========
+                ===================================
                 id disparo: {podio[i]['idDisparo']},
                 Disparos: {podio[i]['disparos']},
                 Numero participante: {podio[i]['nroParticipante']},
                 Nombre: {podio[i]['nombre']},
                 Apellido: {podio[i]['apellido']},
                 Edad: {podio[i]['edad']},
-                Sexo: {podio[i]['sexo']},
+                sexo: {podio[i]['sexo']},
                 Puntaje: {podio[i]['puntaje_total']}
-                ***********************************
-                ***********************************
+                ===================================
+                ===================================
                 """
             )
     
@@ -79,19 +79,19 @@ class Concurso:
         podio = self.__armar_podio(participantes)
         print(
                 f"""
-                ***********************************
-                ********** ULTIMO PUESTO **********
-                ***********************************
+                ===================================
+                ========== ULTIMO PUESTO ==========
+                ===================================
                 id disparo: {podio[0]['idDisparo']},
                 Disparos: {podio[0]['disparos']},
                 Numero participante: {podio[0]['nroParticipante']},
                 Nombre: {podio[0]['nombre']},
                 Apellido: {podio[0]['apellido']},
                 Edad: {podio[0]['edad']},
-                Sexo: {podio[0]['sexo']},
+                sexo: {podio[0]['sexo']},
                 Puntaje: {podio[0]['puntaje_total']}
-                ***********************************
-                ***********************************
+                ===================================
+                ===================================
                 """
             )
     
@@ -102,9 +102,9 @@ class Concurso:
         """
         print(
             f"""
-            ************************************************
-            ******** SE ENCONTRARON {len(self.__disparos)} PARTICIPANTES ********
-            ************************************************
+            ================================================
+            ======== SE ENCONTRARON {len(self.__disparos)} PARTICIPANTES ========
+            ================================================
             """
         )
     
@@ -118,19 +118,19 @@ class Concurso:
         for participante in sorted_participantes:
             print(
                 f"""
-                *********************************
-                ****** PARTICIPANTE Nº: {participante['nroParticipante']} ******
-                *********************************
+                =================================
+                ====== PARTICIPANTE Nº: {participante['nroParticipante']} ======
+                =================================
                 id disparo: {participante['idDisparo']},
                 Disparos: {participante['disparos']},
                 Numero participante: {participante['nroParticipante']},
                 Nombre: {participante['nombre']},
                 Apellido: {participante['apellido']},
                 Edad: {participante['edad']},
-                Sexo: {participante['sexo']},
+                sexo: {participante['sexo']},
                 Puntaje: {participante['puntaje_total']}
-                *********************************
-                *********************************
+                =================================
+                =================================
                 """
             )
     
@@ -144,15 +144,15 @@ class Concurso:
         for promedio in promedios:
             print(
                 f"""
-                *********************************
-                ****** PARTICIPANTE Nº: {promedio['nroParticipante']} ******
-                *********************************
+                =================================
+                ====== PARTICIPANTE Nº: {promedio['nroParticipante']} ======
+                =================================
                 Disparos: {promedio['disparos']},
                 Nombre: {promedio['nombre']},
                 Apellido: {promedio['apellido']},
                 Promedio: {promedio['promedio']}
-                *********************************
-                *********************************
+                =================================
+                =================================
                 """
             )
         
@@ -180,15 +180,15 @@ class Concurso:
         for mejor_disparo in mejores_disparos:
             print(
                 f"""
-                *********************************
-                ****** PARTICIPANTE Nº: {mejor_disparo['nroParticipante']} ******
-                *********************************
+                =================================
+                ====== PARTICIPANTE Nº: {mejor_disparo['nroParticipante']} ======
+                =================================
                 Disparos: {mejor_disparo['disparos']},
                 Nombre: {mejor_disparo['nombre']},
                 Apellido: {mejor_disparo['apellido']},
                 Mejor disparo: {mejor_disparo['mejor_disparo']}
-                *********************************
-                *********************************
+                =================================
+                =================================
                 """
             )
     
@@ -198,7 +198,6 @@ class Concurso:
         Guarda toda la informacion en un archivo
         """
         participantes = self.__disparos.copy()
-        print(participantes)
         archivo = input("Ingrese nombre del archivo: ")
         with open(f"{archivo}.txt", 'a') as csv_file:
             campos = ['idDisparo', 'nroParticipante', 'nombre', 'apellido', 'edad', 'sexo', 'disparos', 'mejor_disparo', 'promedio', 'puntaje_total']
@@ -208,9 +207,9 @@ class Concurso:
                 csv_writer.writerow(linea)
         print(
             f"""
-            **************************************
-            ****** SE HAN GUARDADO LOS DATOS *****
-            **************************************
+            ==========================================
+            ==       SE HAN GUARDADO LOS DATOS      ==
+            ==========================================
             """
         )
     
@@ -223,9 +222,9 @@ class Concurso:
         os.remove(f"{archivo}.txt")
         print(
             f"""
-            ***************************************
-            ****** SE HAN ELIMINADO LOS DATOS *****
-            ***************************************
+            ==========================================
+            ==      SE HAN ELIMINADO LOS DATOS      ==
+            ==========================================
             """
         )
         
@@ -266,8 +265,8 @@ class Concurso:
         menor_edad = 999
         temp = None
         for participante in participantes:
-            if participante['edad'] < menor_edad:
-                menor_edad = participante['edad']
+            if int(participante['edad']) < menor_edad:
+                menor_edad = int(participante['edad'])
                 temp = participante
         return temp
     

@@ -54,7 +54,7 @@ class Participante:
             Nombre: {self._nombre},
             Apellido: {self._apellido},
             Edad: {self._edad},
-            Sexo: {self._sexo}
+            sexo: {self._sexo}
             """
         )
         
