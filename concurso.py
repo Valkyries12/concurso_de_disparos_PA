@@ -1,3 +1,6 @@
+import csv
+import os
+
 class Concurso:
     
     contador_concurso = 0
@@ -189,6 +192,43 @@ class Concurso:
                 """
             )
     
+    
+    def guardar_CSV(self):
+        """
+        Guarda toda la informacion en un archivo
+        """
+        participantes = self.__disparos.copy()
+        print(participantes)
+        archivo = input("Ingrese nombre del archivo: ")
+        with open(f"{archivo}.txt", 'a') as csv_file:
+            campos = ['idDisparo', 'nroParticipante', 'nombre', 'apellido', 'edad', 'sexo', 'disparos', 'mejor_disparo', 'promedio', 'puntaje_total']
+            csv_writer = csv.DictWriter(csv_file, fieldnames=campos)
+            csv_writer.writeheader()
+            for linea in participantes:
+                csv_writer.writerow(linea)
+        print(
+            f"""
+            **************************************
+            ****** SE HAN GUARDADO LOS DATOS *****
+            **************************************
+            """
+        )
+    
+    
+    def borrar_CSV(self):
+        """
+        Elimina el archivo especificado
+        """
+        archivo = input("Indique el nombre del archivo a eliminar: ")
+        os.remove(f"{archivo}.txt")
+        print(
+            f"""
+            ***************************************
+            ****** SE HAN ELIMINADO LOS DATOS *****
+            ***************************************
+            """
+        )
+        
     
     def __calcular_mejores_disparos(self, participantes):
         """

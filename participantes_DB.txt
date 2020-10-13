@@ -1,0 +1,14 @@
+idDisparo,nroParticipante,nombre,apellido,edad,sexo,disparos,mejor_disparo,promedio,puntaje_total
+1,1,Maria,Lopez,21,F,"[62, 64, 74]",62,67,200
+2,2,Carlos,Menem,55,M,"[77, 64, 43]",43,61,184
+5,5,Eleonora,Ortiz,49,F,"[31, 90, 82]",31,68,203
+6,6,Marcelo,Tinelli,55,M,"[77, 33, 98]",33,69,208
+4,4,Mariana,Perez,26,F,"[43, 65, 76]",43,61,184
+3,3,Pepe,Argento,45,M,"[54, 52, 38]",38,48,144
+idDisparo,nroParticipante,nombre,apellido,edad,sexo,disparos,mejor_disparo,promedio,puntaje_total
+1,1,Maria,Lopez,21,F,"[23, 65, 66]",23,51,154
+2,2,Carlos,Menem,55,M,"[45, 65, 51]",45,54,161
+5,5,Eleonora,Ortiz,49,F,"[63, 50, 25]",25,46,138
+6,6,Marcelo,Tinelli,55,M,"[46, 70, 39]",39,52,155
+4,4,Mariana,Perez,26,F,"[75, 47, 104]",47,75,226
+3,3,Pepe,Argento,45,M,"[38, 50, 29]",29,39,117
