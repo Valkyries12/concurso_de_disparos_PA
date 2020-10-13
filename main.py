@@ -135,6 +135,14 @@ def seleccionar_opciones(concurso, opcion):
                 ==============================================
                 """
             )
+        except Exception:
+            print(
+                f"""
+                ==============================================
+                ==           Ha ocurrido un error           ==
+                ==============================================
+                """
+            )
         finally:
             opcion = dibujar_menu()
     else:
