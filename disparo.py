@@ -2,9 +2,11 @@ from participante import Participante
 import math
 import random
 
+
 class Disparo(Participante):
     
     contador_disparos = 0
+    
     
     def __init__(self, nombre, apellido, edad, sexo):
         Disparo.contador_disparos += 1

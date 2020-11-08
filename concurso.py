@@ -1,8 +1,10 @@
 import csv
 import os
+import db
+from model_concurso import ModelConcurso
 
-class Concurso:
-    
+
+class Concurso():        
     contador_concurso = 0
     
     def __init__(self, disparo=[]):
@@ -227,6 +229,41 @@ class Concurso:
             ==========================================
             """
         )
+        
+        
+    def guardar_DB(self):
+        """
+        Guarda la información en una base de datos
+        """
+        db.Base.metadata.create_all(db.engine)
+        
+        participantes = self.get_disparos()
+        self.__insertar_en_DB(participantes)
+        print(
+            f"""
+            ==========================================
+            ==   SE HAN GUARDADO LOS DATOS EN DB    ==
+            ==========================================
+            """
+        )
+        
+    
+    def __insertar_en_DB(self, participantes):
+        for participante in participantes:
+            id = participante['idDisparo']
+            nro_participante = participante['nroParticipante']
+            nombre = participante['nombre']
+            apellido = participante['apellido']
+            edad = participante['edad']
+            sexo = participante['sexo']
+            primer_disparo = participante['disparos'][0]
+            segundo_disparo = participante['disparos'][1]
+            tercer_disparo = participante['disparos'][2]
+            mejor_disparo = participante['mejor_disparo']
+            promedio = participante['promedio']
+            registro = ModelConcurso(id, nro_participante, nombre, apellido, edad, sexo, primer_disparo, segundo_disparo, tercer_disparo, mejor_disparo, promedio)
+            db.session.add(registro)
+            db.session.commit()
         
     
     def __calcular_mejores_disparos(self, participantes):
