@@ -30,3 +30,27 @@ class ModelConcurso(db.Base):
         self.tercer_disparo = tercer_disparo
         self.mejor_disparo = mejor_disparo
         self.promedio = promedio
+        
+    
+    def __str__(self):
+        return (
+            f"""
+            =================================
+            ======                     ======
+            =================================
+            id: {self.id},
+            Número participante: {self.nro_participante},
+            Nombre: {self.nombre},
+            Apellido: {self.apellido},
+            Edad: {self.edad},
+            sexo: {self.sexo},
+            Primer disparo: {self.primer_disparo}
+            Segundo disparo: {self.segundo_disparo}
+            Tercer disparo: {self.tercer_disparo}
+            Mejor disparo: {self.mejor_disparo}
+            Promedio: {self.promedio}
+            =================================
+            =================================
+            """
+        )
+        

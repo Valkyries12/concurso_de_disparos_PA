@@ -246,6 +246,15 @@ class Concurso():
             ==========================================
             """
         )
+    
+    
+    def consultar_todos_DB(self):
+        """
+        Consulta todos los registros de la base de datos
+        """
+        registros = db.session.query(ModelConcurso).all()
+        for registro in registros:
+            print(registro)
         
     
     def __insertar_en_DB(self, participantes):

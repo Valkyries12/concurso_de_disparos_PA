@@ -122,6 +122,8 @@ def seleccionar_opciones(Concurso, opcion):
                 Concurso.borrar_CSV()
             elif opcion == "10":
                 Concurso.guardar_DB()
+            elif opcion == "11":
+                Concurso.consultar_todos_DB()
             elif opcion not in opciones:
                 print(
                         f"""
