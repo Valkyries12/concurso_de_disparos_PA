@@ -14,12 +14,12 @@ class ModelConcurso(db.Base):
     primer_disparo = Column(Integer, nullable=False)
     segundo_disparo = Column(Integer, nullable=False)
     tercer_disparo = Column(Integer, nullable=False)
-    mejor_disparo = Column(Integer, nullable=False)
-    promedio = Column(Integer, nullable=False)
+    mejor_disparo = Column(Integer, nullable=True)
+    promedio = Column(Integer, nullable=True)
     
     
-    def __init__(self, id, nro_participante, nombre, apellido, edad, sexo, primer_disparo, segundo_disparo, tercer_disparo, mejor_disparo, promedio):
-        self.id = id
+    def __init__(self, nro_participante, nombre, apellido, edad, sexo, primer_disparo, segundo_disparo, tercer_disparo, mejor_disparo, promedio):
+        #self.id = id
         self.nro_participante = nro_participante
         self.nombre = nombre
         self.apellido = apellido

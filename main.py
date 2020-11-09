@@ -23,7 +23,8 @@ def dibujar_menu():
             == 9  Borrar CSV                    ==
             == 10 Guardar en DB                 ==
             == 11 Mostrar registros en DB       ==
-            == 12 Salir                         ==
+            == 12 Mostrar ganador [POST]        ==
+            == 13 Salir                         ==
             ======================================
             ======================================
             """
@@ -37,8 +38,8 @@ def seleccionar_opciones(Concurso, opcion):
     Recibe un objeto de concurso y una opcion
     Permite seleccionar distintas opciones con sus funcionalidades
     """
-    opciones = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-    while opcion != "12":
+    opciones = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    while opcion != "13":
         try:
             if opcion == "0":
                 nombre = input("Ingrese nombre del participante: ")
@@ -121,9 +122,29 @@ def seleccionar_opciones(Concurso, opcion):
             elif opcion == "9":
                 Concurso.borrar_CSV()
             elif opcion == "10":
-                Concurso.guardar_DB()
+                if len(Concurso.get_disparos()) < 1:
+                    print(
+                        f"""
+                        ==============================================
+                        ==   Se necesita al menos 1 participante    ==
+                        ==============================================
+                        """
+                    )
+                else:
+                    Concurso.guardar_DB()
             elif opcion == "11":
                 Concurso.consultar_todos_DB()
+            elif opcion == "12":
+                if len(Concurso.get_disparos()) < 3:
+                        print(
+                        f"""
+                        ==============================================
+                        ==   Se necesita al menos 3 participantes   ==
+                        ==============================================
+                        """
+                    )
+                else:
+                    Concurso.mostrar_ganador_POST()
             elif opcion not in opciones:
                 print(
                         f"""
@@ -142,14 +163,7 @@ def seleccionar_opciones(Concurso, opcion):
                 ==============================================
                 """
             )
-        #except Exception:
-         #   print(
-          #      f"""
-           #     ==============================================
-            #    ==           Ha ocurrido un error           ==
-             #   ==============================================
-              #  """
-            #)
+        
         finally:
             opcion = dibujar_menu()
     else:

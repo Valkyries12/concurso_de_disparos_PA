@@ -1,6 +1,7 @@
 import csv
 import os
 import db
+import requests
 from model_concurso import ModelConcurso
 
 
@@ -255,11 +256,42 @@ class Concurso():
         registros = db.session.query(ModelConcurso).all()
         for registro in registros:
             print(registro)
+            
+            
+    def mostrar_ganador_POST(self):
+        """
+        Me muestra al ganador junto con su premio mediante un POST request
+        """
+        participantes = self.__puntuacion_total()
+        podio = self.__armar_podio(participantes)
+        podio.reverse()
+        nombre = podio[0]['nombre']
+        puntaje = float(podio[0]['puntaje_total'])
+        url = f"http://13.58.21.137/flask/api/v2/{nombre}/{puntaje}"
+        response = requests.get(url)
+        print(response.json())
+        responseJSON = response.json()
+        print(
+            f"""
+            =================================
+            ======        RESPONSE     ======
+            =================================
+            Fecha: {responseJSON['fecha']},
+            Mensaje: {responseJSON['mensaje']},
+            Nombre: {responseJSON['nombre']},
+            Premio: {responseJSON['premio']},
+            Token: {responseJSON['token']}
+            =================================
+            =================================
+            """
+        )
+        
+        
         
     
     def __insertar_en_DB(self, participantes):
         for participante in participantes:
-            id = participante['idDisparo']
+            #id = participante['idDisparo']
             nro_participante = participante['nroParticipante']
             nombre = participante['nombre']
             apellido = participante['apellido']
@@ -270,7 +302,7 @@ class Concurso():
             tercer_disparo = participante['disparos'][2]
             mejor_disparo = participante['mejor_disparo']
             promedio = participante['promedio']
-            registro = ModelConcurso(id, nro_participante, nombre, apellido, edad, sexo, primer_disparo, segundo_disparo, tercer_disparo, mejor_disparo, promedio)
+            registro = ModelConcurso( nro_participante, nombre, apellido, edad, sexo, primer_disparo, segundo_disparo, tercer_disparo, mejor_disparo, promedio)
             db.session.add(registro)
             db.session.commit()
         
